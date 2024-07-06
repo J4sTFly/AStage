@@ -2,13 +2,9 @@ class UsersController < ApplicationController
   def index; end
 
   def create
-    user = User.new(user_params)
+    user = Users::CreateUserService.call(user_params)
 
-    if user.save
-      render :show, locals: { user: }
-    else
-      render locals: { user: }
-    end
+    render json: UserSerializer.new(user).call
   end
 
   private
