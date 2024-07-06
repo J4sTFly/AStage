@@ -12,7 +12,6 @@ class UserSerializer
       username: user.username,
       email: user.email,
       password: user.password,
-      errors: user.errors.full_messages
-    }
+      errors: user.errors.full_messages }
   end
 end
