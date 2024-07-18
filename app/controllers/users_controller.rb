@@ -1,10 +1,30 @@
 class UsersController < ApplicationController
-  def index; end
+  before_action :auth_request, only: :edit
 
   def create
     user = Users::CreateUserService.call(user_params)
 
-    render json: UserSerializer.new(user).call
+    if user.valid?
+      render json: UserSerializer.new(user).call
+    else
+      render json: user.errors.full_messages
+    end
+  end
+
+  def edit
+    render json: UserSerializer.new(@user).call
+  end
+
+  def login
+    user = User.find_by(email: user_params[:email])
+
+    result = Users::AuthenticateService.new(user, user_params[:password]).call
+
+    if result[:success]
+      render json: result[:token]
+    else
+      render json: result[:errors]
+    end
   end
 
   private
