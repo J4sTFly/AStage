@@ -52,12 +52,16 @@ group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'annotate', '~> 3.2'
   gem 'debug', platforms: %i[mri windows]
+  gem 'factory_bot_rails', '~> 6.4'
+  gem 'faker', '~> 3.4'
   gem 'letter_opener', '~> 1.10'
   gem 'pry', '~> 0.14.2'
+  gem 'rspec-rails', '~> 6.1'
   gem 'rubocop', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
+  gem 'rubocop-rspec_rails', '~> 2.30'
 end
 
 group :development do

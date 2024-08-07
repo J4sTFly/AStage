@@ -10,10 +10,10 @@ module Users
     end
 
     def call
-      if user.authenticate password
+      if user&.authenticate(password)
         { token: jwt_encode(user_id: user.id), success: true }
       else
-        { errors: I18n.t('errors.wrong_password'), success: false }
+        { errors: I18n.t('errors.bad_credentials'), success: false }
       end
     end
   end

@@ -11,7 +11,6 @@ class UserSerializer
     { id: user.id,
       username: user.username,
       email: user.email,
-      password: user.password,
       errors: user.errors.full_messages }
   end
 end

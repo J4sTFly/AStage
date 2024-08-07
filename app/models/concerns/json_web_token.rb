@@ -13,6 +13,6 @@ module JsonWebToken
 
   def jwt_decode(token)
     decoded_data = JWT.decode(token, SECRET_KEY)[0]
-    HashWithIndifferentAccess.new decoded_data
+    ActiveSupport::HashWithIndifferentAccess.new decoded_data
   end
 end

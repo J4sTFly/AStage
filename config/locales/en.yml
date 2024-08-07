@@ -30,5 +30,5 @@
 en:
   welcome_mail: Welcome to AStage project
   errors:
-    wrong_password: Please check the provided credentials.
+    bad_credentials: Please check the provided credentials.
     unauthorized: Unauthorized

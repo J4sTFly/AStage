@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   def auth_request
     header = request.headers['Authorization']
     if header
-      header = header.split(' ').last
+      header = header.split.last
       decoded = jwt_decode(header)
       user(decoded[:user_id])
     else

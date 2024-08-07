@@ -2,8 +2,10 @@ require:
   - rubocop-performance
   - rubocop-rails
   - rubocop-rspec
+  - rubocop-rspec_rails
 
 AllCops:
+  NewCops: enable
   Exclude:
     - '**/tmp/**/*'
     - 'config/puma.rb'
