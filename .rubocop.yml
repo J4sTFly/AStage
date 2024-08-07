@@ -2,8 +2,10 @@ require:
   - rubocop-performance
   - rubocop-rails
   - rubocop-rspec
+  - rubocop-rspec_rails
 
 AllCops:
+  NewCops: enable
   Exclude:
     - '**/tmp/**/*'
     - 'config/puma.rb'
@@ -11,7 +13,9 @@ AllCops:
     - '**/vendor/**/*'
     - '**/node_modules/**/*'
     - 'bin/**/*'
-    - config/initializers/secret_token.rb
+    - 'config/initializers/secret_token.rb'
+    - 'lib/tasks/**/*'
+    - 'db/schema.rb'
 
 Metrics/LineLength:
   Max: 120

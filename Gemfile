@@ -36,7 +36,7 @@ gem 'redis', '>= 4.0.1'
 # gem "kredis"
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
-# gem "bcrypt", "~> 3.1.7"
+gem 'bcrypt', '~> 3.1'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[windows jruby]
@@ -46,14 +46,22 @@ gem 'bootsnap', require: false
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
+gem 'jwt', '~> 2.8'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
+  gem 'annotate', '~> 3.2'
   gem 'debug', platforms: %i[mri windows]
+  gem 'factory_bot_rails', '~> 6.4'
+  gem 'faker', '~> 3.4'
+  gem 'letter_opener', '~> 1.10'
+  gem 'pry', '~> 0.14.2'
+  gem 'rspec-rails', '~> 6.1'
   gem 'rubocop', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
+  gem 'rubocop-rspec_rails', '~> 2.30'
 end
 
 group :development do

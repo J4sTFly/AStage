@@ -75,13 +75,21 @@ GEM
       minitest (>= 5.1)
       mutex_m
       tzinfo (~> 2.0)
+    addressable (2.8.7)
+      public_suffix (>= 2.0.2, < 7.0)
+    annotate (3.2.0)
+      activerecord (>= 3.2, < 8.0)
+      rake (>= 10.4, < 14.0)
     ast (2.4.2)
     base64 (0.2.0)
+    bcrypt (3.1.20)
     bigdecimal (3.1.8)
     bindex (0.8.1)
     bootsnap (1.18.3)
       msgpack (~> 1.2)
     builder (3.3.0)
+    childprocess (5.0.0)
+    coderay (1.1.3)
     concurrent-ruby (1.3.3)
     connection_pool (2.4.1)
     crass (1.0.6)
@@ -91,8 +99,16 @@ GEM
     debug (1.9.2)
       irb (~> 1.10)
       reline (>= 0.3.8)
+    diff-lcs (1.5.1)
     drb (2.2.1)
     erubi (1.13.0)
+    factory_bot (6.4.6)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.4.3)
+      factory_bot (~> 6.4)
+      railties (>= 5.0.0)
+    faker (3.4.2)
+      i18n (>= 1.8.11, < 2)
     globalid (1.2.1)
       activesupport (>= 6.1)
     i18n (1.14.5)
@@ -107,7 +123,14 @@ GEM
     jsbundling-rails (1.3.0)
       railties (>= 6.0.0)
     json (2.7.2)
+    jwt (2.8.2)
+      base64
     language_server-protocol (3.17.0.3)
+    launchy (3.0.1)
+      addressable (~> 2.8)
+      childprocess (~> 5.0)
+    letter_opener (1.10.0)
+      launchy (>= 2.2, < 4)
     loofah (2.22.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -117,6 +140,7 @@ GEM
       net-pop
       net-smtp
     marcel (1.0.4)
+    method_source (1.1.0)
     mini_mime (1.1.5)
     minitest (5.24.1)
     msgpack (1.7.2)
@@ -147,8 +171,12 @@ GEM
       ast (~> 2.4.1)
       racc
     pg (1.5.6)
+    pry (0.14.2)
+      coderay (~> 1.1)
+      method_source (~> 1.0)
     psych (5.1.2)
       stringio
+    public_suffix (6.0.0)
     puma (6.4.2)
       nio4r (~> 2.0)
     racc (1.8.0)
@@ -202,6 +230,23 @@ GEM
       io-console (~> 0.5)
     rexml (3.3.2)
       strscan
+    rspec-core (3.13.0)
+      rspec-support (~> 3.13.0)
+    rspec-expectations (3.13.1)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.13.0)
+    rspec-mocks (3.13.1)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.13.0)
+    rspec-rails (6.1.3)
+      actionpack (>= 6.1)
+      activesupport (>= 6.1)
+      railties (>= 6.1)
+      rspec-core (~> 3.13)
+      rspec-expectations (~> 3.13)
+      rspec-mocks (~> 3.13)
+      rspec-support (~> 3.13)
+    rspec-support (3.13.1)
     rubocop (1.65.0)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
@@ -225,6 +270,9 @@ GEM
       rubocop-ast (>= 1.31.1, < 2.0)
     rubocop-rspec (3.0.3)
       rubocop (~> 1.61)
+    rubocop-rspec_rails (2.30.0)
+      rubocop (~> 1.61)
+      rubocop-rspec (~> 3, >= 3.0.1)
     ruby-progressbar (1.13.0)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
@@ -266,19 +314,28 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  annotate (~> 3.2)
+  bcrypt (~> 3.1)
   bootsnap
   cssbundling-rails
   debug
+  factory_bot_rails (~> 6.4)
+  faker (~> 3.4)
   jbuilder
   jsbundling-rails
+  jwt (~> 2.8)
+  letter_opener (~> 1.10)
   pg (~> 1.1)
+  pry (~> 0.14.2)
   puma (>= 5.0)
   rails (~> 7.1.3, >= 7.1.3.4)
   redis (>= 4.0.1)
+  rspec-rails (~> 6.1)
   rubocop
   rubocop-performance
   rubocop-rails
   rubocop-rspec
+  rubocop-rspec_rails (~> 2.30)
   sprockets-rails
   stimulus-rails
   turbo-rails
