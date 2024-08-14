@@ -1,41 +1,36 @@
 name: RSpec
+
 on: push
+
 jobs:
-  run-rspec:
+  test:
     runs-on: ubuntu-latest
+
     services:
-      pg:
-        image: bitnami/postgresql:10.22.0
+      postgres:
+        image: postgres
         env:
           POSTGRES_USER: postgres
-          ALLOW_EMPTY_PASSWORD: yes
-          POSTGRES_PASSWORD: ""
-        options: --health-cmd "pg_isready -U postgres"  --health-interval 5s --health-timeout 5s --health-retries 5 --mount type=tmpfs,destination=/var/lib/postgresql/data
+          POSTGRES_PASSWORD: postgres
         ports:
-        - 5432:5432
-
-    env:
-      RAILS_MASTER_KEY: ${{ secrets.RAILS_TEST_KEY }}
-      RAILS_ENV: test
-      PG_USERNAME: postgres
-      PG_PASSWORD: ""
+          - 5432:5432
+        options: --health-cmd="pg_isready" --health-interval=10s --health-timeout=5s --health-retries=3
 
     steps:
-    - name: Check out repo code
-      uses: actions/checkout@v4
-    - name: Set up Ruby and Gems
-      uses: ruby/setup-ruby@v1
-      with:
-        bundler-cache: true
-    - name: Install Gems
-      run: bundle install
-    - name: Install PostgreSQL client lib
-      run: sudo apt-get install libpq-dev
-    - name: Copy database.yml
-      run: cp config/database.yml.example config/database.yml
-    - name: Copy chewy.yml
-      run: cp config/chewy.yml.example config/chewy.yml
-    - name: Create test database
-      run: bundle exec rails db:setup
-    - name: Run RSpec
-      run: bundle exec rspec
+      - name: Install packages
+        run: sudo apt-get update && sudo apt-get install --no-install-recommends -y curl postgresql-client libpq-dev
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: .ruby-version
+          bundler-cache: false
+      - run: bundle install
+      - name: Run tests
+        env:
+          RAILS_ENV: test
+          DATABASE_URL: postgres://postgres:postgres@localhost:5432
+        run: bin/rails db:setup spec
